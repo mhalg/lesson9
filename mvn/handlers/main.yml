@@ -1,0 +1,12 @@
+---
+# handlers file for mvn
+
+- name: push war_file
+  shell: scp /tmp/boxfuse-sample-java-war-hello/target/*.war 51.250.77.24:/var/lib/tomcat9/webapps/
+#  become: yes
+#  synchronize:
+#    src:  /tmp/boxfuse-sample-java-war-hello/target/
+#    dest: rsync://51.250.77.24/var/lib/tomcat9/webapps/
+#    rsync_opts:
+#    - "--include=*.war"
+#  delegate_to: 51.250.77.24

@@ -1,0 +1,14 @@
+---
+- name: tocmat server setup
+  hosts: web
+  become: yes
+
+  roles:
+  - tomcat
+
+- name: mvn install and java app compile
+  hosts: mvn
+  become: yes
+
+  roles:
+  - mvn

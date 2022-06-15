@@ -1,0 +1,23 @@
+---
+# tasks file for mvn
+    - name: Run the equivalent of "apt-get update" as a separate step
+      apt:
+      update_cache: yes
+    - name: "Ensure that jdk, maven and git are installed"
+      apt:
+        pkg:
+        - default-jdk
+        - git
+        - maven
+        state: installed
+    - name: "Clone jdk app from github"
+      git:
+        repo: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
+        dest: /tmp/boxfuse-sample-java-war-hello/
+        update: yes
+        clone: yes
+    - name: "build java app"
+      command: mvn package
+      args:
+        chdir: /tmp/boxfuse-sample-java-war-hello
+      notify: push war_file

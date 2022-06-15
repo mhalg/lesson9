@@ -1,0 +1,14 @@
+---
+# tasks file for tomcat
+  - name: "Ensure tomcat installed"
+    apt:
+      pkg:
+      - tomcat9
+      state: installed
+  - name: "Ensure tomcat port is changed from 8080 to 88"
+    replace:
+      path: /var/lib/tomcat9/conf/server.xml
+      regexp: 8080
+      replace: 88
+    notify: restart tomcat
+       
